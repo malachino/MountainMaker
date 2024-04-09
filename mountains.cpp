@@ -1,5 +1,6 @@
 #include "mountains.h"
 #include <iostream>
+#include <cmath>
 using namespace std;
 //  ------------------------------------------------------------------------------------------
 //          Modification Functions
@@ -16,9 +17,9 @@ void Grow(Topograph& mountainName, int startSize, int step, int whenToUpscale) {
     // Add a new point to the structure
     
     int added = 0;
-    int boxSize = startSize*(2^step);
+    int boxSize = startSize*(pow(2,step));
     //while (added/boxSize < whenToUpscale)  //while fewer than the percent have been added
-    for(int i = 0; i < 2*startSize; i++)
+    for(int i = 0; i < 2*boxSize; i++)
     {
         //code to add a random point
         int x = 0.5*boxSize + rand()%(boxSize/2);
@@ -88,12 +89,10 @@ void Create(Topograph& mountainName, int startSize, int multiplier, float whenTo
     int y = startSize/4 + rand()%(startSize/2);
     Nucleate(mountainName, x, y);
     //displayFromTop(mountainName);
-    Grow(mountainName, startSize, 1, whenToUpscale);
+    Grow(mountainName, startSize, 0, whenToUpscale);
     
     
 }
-
-
 
 //  ------------------------------------------------------------------------------------------
 //          Display Functions
