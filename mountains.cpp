@@ -1,5 +1,5 @@
-#include "mountains.h"
 #include <iostream>
+#include "mountains.h"
 #include <cmath>
 using namespace std;
 //  ------------------------------------------------------------------------------------------
@@ -13,7 +13,7 @@ void Nucleate(Topograph& mountainName, int x, int y) {
     mountainName[x][y] = 10000;
 }
 
-void Grow(Topograph& mountainName, int startSize, int step, int whenToUpscale) {
+void Grow(Topograph& mountainName, int startSize, int step, float whenToUpscale) {
     // Add a new point to the structure
     
     int added = 0;

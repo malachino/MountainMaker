@@ -1,6 +1,8 @@
 #include <iostream>
+#include <string>
 #include "mountains.h"
 #include "mountains.cpp"
+
 using namespace std;
 
 int main() {
