@@ -1,6 +1,6 @@
+#include <cmath>
 #include <iostream>
 #include "mountains.h"
-#include <cmath>
 using namespace std;
 //  ------------------------------------------------------------------------------------------
 //          Modification Functions
@@ -13,7 +13,7 @@ void Nucleate(Topograph& mountainName, int x, int y) {
     mountainName[x][y] = 10000;
 }
 
-void Grow(Topograph& mountainName, int startSize, int step) {
+void Grow(Topograph& mountainName, int startSize, int step, int whenToUpscale) {
     // Add a new point to the structure
     
     int added = 0;
@@ -74,6 +74,23 @@ void Blur(Topograph& mountainName, int value) {
     // Implementation for Blur function
     // Blur the graph with the specified value
     // Modify the mountainName accordingly
+    Topograph blurred = {0};
+    int width = 2*mountainRadius;
+    for(int x = 1; x < mountainRadius - 1; x++){
+        for(int y = 1; y < mountainRadius - 1; y++){
+            
+            blurred[x][y] = 
+            (
+                (
+                mountainName[x-1][y+1] + mountainName[ x ][y+1] + mountainName[x+1][y+1] +
+                mountainName[x-1][ y ] + mountainName[ x ][ y ] + mountainName[x+1][ y ] +
+                mountainName[x-1][y-1] + mountainName[ x ][y-1] + mountainName[x+1][y-1]
+                )/9
+            )
+        }
+    }
+    mountainName = blurred;
+    return mountainName;
 }
 
 void Upscale(Topograph& mountainName, int multiplier) {
@@ -109,8 +126,22 @@ void displayFromTop(const Topograph& mountainName) {
 }
 
 void displayFromNorth(const Topograph& mountainName) {
-    // Implementation for displayFromNorth function
-    // Display the mountain from the North
+    
+    Skyline NorthView = {'`'};
+    int width = (mountainRadius*2);
+    int highestPoint = 0;
+    int currentHeight = 0;
+    for(int x = 0; x < width; x++){
+        for(int y = 0; y < width; y++){
+            currentHeight = mountainName[x][y];
+            for(int i = 0; i < currentHeight; i++){
+                NorthView[x][i] = '#'; 
+            }
+            //depending on y, change to different characters
+            highestPoint = max(highestPoint, currentHeight);
+        }
+    }
+    
 }
 
 void displayFromEast(const Topograph& mountainName) {

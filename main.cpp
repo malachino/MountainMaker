@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "mountains.h"
-#include "mountains.cpp"
+// #include "mountains.cpp"
 
 using namespace std;
 
@@ -9,7 +9,7 @@ int main() {
     // Ask user for a mountain name
     cout << "Please enter a mountain name: ";
     string name;
-    getline(cin, name);
+    getline(cin, name); 
 
     Topograph mountain = {0};
     int startSize = 8;          //  dimensions of topogrpahical map to begin with

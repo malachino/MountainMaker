@@ -6,7 +6,7 @@ const int mountainRadius = 16;
 const int maxHeight = 100;
 const int selected = 999;
 typedef int Topograph[2*mountainRadius][2*mountainRadius];
-
+typedef char Skyline[maxHeight][2*mountainRadius];
 
 //  ------------------------------------------------------------------------------------------
 //  Modification Functions
