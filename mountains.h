@@ -15,7 +15,7 @@ typedef int Topograph[2*mountainRadius][2*mountainRadius];
     void Blur(Topograph& mountainName, int value);              // blurs the graph
     void Upscale(Topograph& mountainName, int multipler);       // upscale the graph by a multiplier
 
-    void Create(Topograph& mountainName, int startSize, int multiplier, float whenToUpscale);
+    void Create(Topograph& mountainName, int startSize, int multiplier, int whenToUpscale);
         // startSize:       dimensions of topogrpahical map to begin with
         // multipler:       how much to upscale by when you upscale   
         // whenToUpscale:   what percent of the map filled to upscale it

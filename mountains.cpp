@@ -13,23 +13,23 @@ void Nucleate(Topograph& mountainName, int x, int y) {
     mountainName[x][y] = 10000;
 }
 
-void Grow(Topograph& mountainName, int startSize, int step, float whenToUpscale) {
+void Grow(Topograph& mountainName, int startSize, int step) {
     // Add a new point to the structure
     
     int added = 0;
-    int boxSize = startSize*(pow(2,step));
+    int boxSize = int((startSize)*(pow(2,step)));
     //while (added/boxSize < whenToUpscale)  //while fewer than the percent have been added
     for(int i = 0; i < 2*boxSize; i++)
     {
         //code to add a random point
-        int x = 0.5*boxSize + rand()%(boxSize/2);
-        int y = 0.5*boxSize + rand()%(boxSize/2);
+        int x = int(0.5*boxSize + rand()%(boxSize/2));
+        int y = int(0.5*boxSize + rand()%(boxSize/2));
         bool done = false;
         while(done == false){
-            if( (x < boxSize - 1    && mountainName[x + 1][y + 0]) >= selected ||
-                (y < boxSize - 1    && mountainName[x + 0][y + 1]) >= selected ||
-                (       x > 0       && mountainName[x - 1][y + 0]) >= selected ||
-                (       y > 0       && mountainName[x + 0][y - 1]) >= selected   )
+            if( ((x < boxSize - 1) && ((mountainName[x + 1][y + 0]) >= selected)) ||
+                ((y < boxSize - 1) && ((mountainName[x + 0][y + 1]) >= selected)) ||
+                ((       x > 0   ) && ((mountainName[x - 1][y + 0]) >= selected)) ||
+                ((       y > 0   ) && ((mountainName[x + 0][y - 1]) >= selected))   )
             {
                 cout << "marking (" << to_string(x).c_str() << "," << to_string(y).c_str() << ")" << endl;
                 mountainName[x][y] += selected;  
@@ -82,7 +82,7 @@ void Upscale(Topograph& mountainName, int multiplier) {
     // Modify the mountainName accordingly
 }
 
-void Create(Topograph& mountainName, int startSize, int multiplier, float whenToUpscale) {
+void Create(Topograph& mountainName, int startSize, int multiplier, int whenToUpscale) {
     // Create a topographical map based on provided parameters
     
     int x = startSize/4 + rand()%(startSize/2);
